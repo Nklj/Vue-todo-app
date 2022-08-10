@@ -2,7 +2,8 @@
   "name": "vue-test-task",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+  "homepage": "https://github.com/Nklj/Vue-todo-app",
+  "scripts": {    
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
