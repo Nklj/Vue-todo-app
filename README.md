@@ -4,7 +4,7 @@ Vue CRUD TODO App
 
 DEMO 
 
-![Иллюстрация к проекту](https://github.com/Nklj/Vue-todo-app/blob/main/src/assets/Screenshot.png)
+[![Иллюстрация к проекту](https://github.com/Nklj/Vue-todo-app/blob/main/src/assets/Screenshot.png)](http://example.com)
 
 
 
