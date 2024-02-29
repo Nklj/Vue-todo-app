@@ -6,9 +6,9 @@
       <div class="input-field col s6 ">
         <select ref="select" v-model="filter">
           <option value="" disabled selected>Выбрать статус</option>
-          <option value="active">Активные</option>
-          <option value="outdated">Просроченные</option>
-          <option value="completed">Выполненные</option>
+          <option value="активна">Активные</option>
+          <option value="просрочена">Просроченные</option>
+          <option value="выполнена">Выполненные</option>
         </select>
         <label>Фильтр статуса</label>
       </div>
@@ -42,7 +42,7 @@
         </td>
         <td>{{task.status}}</td>
         <td>
-          <router-link tag="button" style="margin-right: 1rem;" class="btn btn-small" :to="'/task/' + task.id">
+          <router-link style="margin-right: 1rem;" class="btn btn-small" :to="'/task/' + task.id">
             Редактировать
           </router-link>
           <button class="btn btn-small red" @click="deleteTask(task.id)">Х</button>
