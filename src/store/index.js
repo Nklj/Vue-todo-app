@@ -4,7 +4,7 @@ export default createStore({
   state: {
     tasks: JSON.parse(localStorage.getItem("tasks") || "[]").map((task) => {
       if (new Date(task.date) < new Date()) {
-        task.status = "outdated";
+        task.status = "просрочена";
       }
       return task;
     }),
@@ -21,7 +21,7 @@ export default createStore({
       const idx = tasks.findIndex((t) => t.id === id);
       const task = tasks[idx];
 
-      const status = new Date(date) > new Date() ? "active" : "outdated";
+      const status = new Date(date) > new Date() ? "активна" : "просрочена";
 
       tasks[idx] = { ...task, date, description, status };
 
@@ -30,7 +30,11 @@ export default createStore({
     },
     completeTask(state, id) {
       const idx = state.tasks.findIndex((t) => t.id === id);
-      state.tasks[idx].status = "completed";
+      state.tasks[idx].status = "выполнена";
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
+    },
+    deleteTask(state, id) {
+      state.tasks = state.tasks.filter((t) => t.id !== id);
       localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
   },
@@ -43,6 +47,9 @@ export default createStore({
     },
     completeTask({ commit }, id) {
       commit("completeTask", id);
+    },
+    deleteTask({ commit }, id) {
+      commit("deleteTask", id);
     },
   },
   getters: {

@@ -5,23 +5,23 @@
 
       <form @submit.prevent="submitHandler">
 
-        <div class="chips" ref="chips"></div>
-
         <div class="input-field">
           <textarea style="min-height: 150px" v-model="description" id="description" class="materialize-textarea"></textarea>
-          <label for="description">Description</label>
+          <label for="description">Описание</label>
           <span class="character-counter" style="float: right; font-size: 12px;">{{description.length}}/2048</span>
         </div>
 
         <input type="text" ref="datepicker">
 
         <div v-if="task.status !== 'completed'">
-          <button class="btn" type="submit" style="margin-right: 1rem;">Update</button>
-          <button class="btn blue" type="button" @click="completeTask">Complete task</button>
+          <button class="btn" type="submit" style="margin-right: 1rem;">Обновить</button>
+          <button class="btn blue" type="button" style="margin-right: 1rem;" @click="completeTask">Завершить задачу</button>
+          <button class="btn red" type="button" @click="deleteTask">Удалить задачу</button>
         </div>
+        
       </form>
     </div>
-    <p v-else>Task not found</p>
+    <p v-else>Задач нет</p>
   </div>
 </template>
 
@@ -34,15 +34,10 @@ export default {
   },
   data: () => ({
     description: '',
-    chips: null,
     date: null,
   }),
   mounted() {
     this.description = this.task.description
-    this.chips = M.Chips.init(this.$refs.chips, {
-      placeholder: 'Task tags',
-      data: this.task.tags
-    })
     this.date = M.Datepicker.init(this.$refs.datepicker, {
       format: 'dd.mm.yyyy',
       defaultDate: new Date(this.task.date),
@@ -64,15 +59,15 @@ export default {
     completeTask() {
       this.$store.dispatch('completeTask', this.task.id)
       this.$router.push('/list')
+    },
+    deleteTask() {
+      this.$store.dispatch('deleteTask', this.task.id)
+      this.$router.push('/list')
     }
   },
   destroyed() {
     if (this.date && this.date.destroy) {
       this.date.destroy()
-    }
-
-    if (this.chips && this.chips.destroy) {
-      this.chips.destroy()
     }
   }
 }

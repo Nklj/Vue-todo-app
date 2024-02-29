@@ -1,13 +1,13 @@
 <template>
   <nav class="blue darken-3">
     <div class="nav-wrapper">
-      <router-link to="/" class="brand-logo">Tasks</router-link>
+      <router-link to="/" class="brand-logo">Задачи</router-link>
       <ul class="right hide-on-med-and-down">
         <router-link  to="/"  >
-          Create
+          Создать
         </router-link>
         <router-link  to="/list"  >
-          List
+          Список
         </router-link>
       </ul>
     </div>
